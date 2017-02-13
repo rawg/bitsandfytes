@@ -7,6 +7,11 @@ Example:
 
         $ python validate.py -i path/to/source.csv -o path/to/results.csv
 
+Validation:
+    1. All articles are present.
+    2. No new categories were introduced.
+    3. All super categories can be explained as a set of categories in which
+       each has a suitable Jaccard similarity with at least one other.
 """
 
 from common import jaccard, TallyCollection
@@ -28,16 +33,19 @@ class Taxonomy(object):
     """
     def __init__(self, infile=None, headers=True):
         self.cat_arts = {}
-        self.skills = set()
+        self.art_cats = {}
+        self.arts = set()
         self.cats = set()
         self.pairs = 0
         if infile is not None:
             self.read(infile, headers)
 
-    def add(self, cat, skill):
+    def add(self, cat, art):
         self.cat_arts.setdefault(cat, set())
-        self.cat_arts[cat].add(skill)
-        self.skills.add(skill)
+        self.cat_arts[cat].add(art)
+        self.art_cats.setdefault(art, set())
+        self.art_cats[art].add(cat)
+        self.arts.add(art)
         self.cats.add(cat)
         self.pairs += 1
 
@@ -101,49 +109,71 @@ def validate(source, output, threshold=0.75, headers=True):
         for m in missing:
             found = False
             for g in grown:
-                # The original category is a subset of the super category
+                # 3.1. The original category is a subset of the super category.
                 if src.cat_arts[m] < out.cat_arts[g]:
                     found = True
                     maybe.setdefault(g, set())
                     maybe[g].add(m)
 
             if not found:
-                for s in survivors:
-                    if src.cat_arts[m] <= src.cat_arts[s]:
-                        found = True
-                        break
+                # 3.2. Find removed categories to prevent a false error below.
+                arts = list(src.cat_arts[m])
+                for a in src.cat_arts[m]:
+                    cats = src.art_cats[a]
+                    ix = cats & survivors
+                    if ix:
+                        for art in ix:
+                            del arts[arts.index(art)]
+
+                found = len(art) == 0
 
                 if not found:
-                    # The original category's articles cannot all be found in
-                    # one super category, meaning the category was split.
+                    # 3.3. The original category's articles cannot all be found
+                    #      in one super category, meaning the category was
+                    #      split.
                     return error("Category '%s' appears to have been split" % m)
 
         # 4. Confirm that at least one set of possible valid merges contains
         #    all of the articles in each super category.
+        merges = {}
         for m in maybe:
+            # 4.1. Map possible merge operations in a union-find
             cats = list(maybe[m]) + [m] # be sure to consider the supercat
             uf = UnionFind(cats)
             for i in range(0, len(cats)):
                 for j in range(i + 1, len(cats)):
                     artsi = src.cat_arts[cats[i]]
                     artsj = src.cat_arts[cats[j]]
-                    print(artsi, artsj)
 
                     if jaccard(artsi, artsj) > threshold:
                         uf.union(cats[i], cats[j])
 
+            # 4.2. Confirm that at least one set of merges produces the exact
+            #      contents of the super category.
             sets = uf.sets()
+            merges[m] = sets
             found = False
+            labeled = True
+
             for cats in sets:
+                hi = 0
                 arts = set()
                 for cat in cats:
+                    hi = max(hi, len(src.cat_arts[cat]))
                     arts = arts | src.cat_arts[cat]
 
                 if arts == out.cat_arts[m]:
                     found = True
+                    if len(src.cat_arts[m]) >= hi:
+                        labeled = True
 
             if not found:
                 return error("Not all categories merged into %s are connected" % m)
+
+            if not labeled:
+                return error("Invalid label for supercategory %s" % m)
+
+        print(merges)
 
     # success, pairs removed, categories removed, super categories, error message
     return results(True, src.pairs - out.pairs, len(src.cats) - len(out.cats), len(grown), None)
