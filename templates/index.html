@@ -1,0 +1,35 @@
+{% include "header.html" %}
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+			<h1>Leaderboard</h1>
+
+			{% for file, scores in runs.items() %}
+			<h2>{{ file }} <a href="/sources/{{ files[file]["id"] }}"><span class="glyphicon glyphicon-download"></span></a></h2>
+				<p>{{ files[file]["descr"] }}</p>
+				<table class="table table-striped">
+					<tr>
+						<th>Username</th>
+						<th>Date</th>
+						<th>Pairs Removed</th>
+						<th>Categories Removed</th>
+						<th>Supercategories</th>
+					</tr>
+				{% for score in scores %}
+				<tr>
+					<td class="user">{{ score["user"] }}</td>
+					<td class="dt_added">{{ score["dt_added"] }}</td>
+					<td class="pairs">{{ score["pairs"] }}</td>
+					<td class="cats">{{ score["cats"] }}</td>
+					<td class="merged">{{ score["merged"] }}</td>
+				</tr>
+				{% endfor %}
+				</table>
+
+			{% endfor %}
+       </div>
+      </div>
+  </div>
+
+ {% include "footer.html" %}

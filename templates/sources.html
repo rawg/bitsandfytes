@@ -1,0 +1,43 @@
+{% include "header.html" %}
+
+    <div class="container">
+	  <div class="row">
+		  <div class="col-md-offset-2 col-md-8">
+			  <h1>Add Source File</h1>
+				{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+					<div id="messages">
+					{% for category, message in messages %}
+						{% if category == "error" %}
+							<p class="bg-warning">
+						{% elif category == "success" %}
+							<p class="bg-success">
+						{% endif %}
+						{{ message }}</p>
+					{% endfor %}
+					</div>
+				{% endif %}
+				{% endwith %}
+		  </div>
+	  </div>
+	  <div class="row">
+		  <div class="col-md-offset-2 col-md-8">
+			  <p>Add another source data set to validate your solution against.</p>
+			  <form method="post" action="/sources" enctype="multipart/form-data">
+			      <div class="form-group">
+					  <label for="file">Source File</label>
+					  <input type="file" class="form-control" name="file" />
+					  <p class="help-block">Two column CSV of categories and articles.</p>
+				  </div>
+				  <div class="form-group">
+					  <label for="descr">Description</label>
+					  <input type="text" class="form-control" name="descr" />
+					  <p>Is there anything you'd like to remember about this file?</p>
+				  </div>
+				  <button type="submit" class="btn btn-default">Submit</button>
+			  </form>
+		  </div>
+      </div>
+  </div>
+
+ {% include "footer.html" %}
