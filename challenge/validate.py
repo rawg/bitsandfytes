@@ -84,7 +84,6 @@ def validate(source, output, threshold=0.75, headers=True):
 
         # Verify that at least one set of possible valid merges contains
         # all of the articles in the super category.
-        # TODO: account for categories that don't have similarity but do have all of their articles in the supercategory
         for m in maybe:
             uf = UnionFind(maybe[m])
             cats = list(maybe[m])
