@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""
+"""Category reduction validator.
 
+Example:
+    Import the ``validate`` function into your app or use directly from the command line::
+
+        $ python validate.py -i path/to/source.csv -o path/to/results.csv
 
 """
 
@@ -15,7 +19,13 @@ import logging
 logging.basicConfig(level=logging.WARN)
 
 
-class Tree(object):
+class Taxonomy(object):
+    """A taxonomy of categories to articles.
+
+    Args:
+        infile (str): The full path to an input file location
+        headers (bool): Auto-detect headers. Set to False to disable.
+    """
     def __init__(self, infile=None, headers=True):
         self.cat_arts = {}
         self.skills = set()
@@ -36,63 +46,90 @@ class Tree(object):
             reader = csv.reader(csvfile)
 
             head = next(reader)
-            if head[0] != "category" or head[1] != "article":
+            if not headers or (head[0] != "category" or head[1] != "article"):
                 csvfile.seek(0)
 
             for cat, skill in reader:
                 self.add(cat, skill)
 
-
 def validate(source, output, threshold=0.75, headers=True):
+    """Validate and score the results of category elimination.
+
+    Args:
+        source (str): The path to the source data in CSV.
+        output (str): The path to the output data in CSV.
+        threshold (float): The minimum Jaccard similarity required to
+            merge categories.
+        headers (bool): Auto-detect headers.
+
+    Returns:
+        Tuple[bool, int, int, int, str]: A tuple containing the results
+            of validation and scoring. Elements are success, removed pairs,
+            removed categories, super categories, and message (used to
+            describe failures).
+
+    """
+    def results(success=False, pairs=0, cats=0, supercats=0, msg=None):
+        return (success, pairs, cats, supercats, msg)
+
     def error(msg):
-        return (False, 0, 0, 0, msg)
+        return results(False, 0, 0, 0, msg)
 
-    src = Tree(source)
-    out = Tree(output)
+    src = Taxonomy(source)
+    out = Taxonomy(output)
 
-    # Confirm that all skills are present
+    # 1. Confirm that all skills are present
     if src.skills != out.skills:
-        error("Some skills are missing")
+        return error("Some skills are missing")
 
-    # Confirm that all categories are present and no new categories
-    # were created.
+    # 2. Confirm that no new categories were introduced.
     if len(out.cats - src.cats) != 0:
-        error("Categories were introduced")
-
+        return error("Categories were introduced")
 
     missing = src.cats - out.cats
     grown = [cat for cat in out.cats if src.cat_arts[cat] != out.cat_arts[cat]]
+    survivors = src.cats - missing - set(grown)
 
     if len(grown) > 0:
         if len(missing) == 0:
-            error("Some categories have more articles, but no categories " +
-                  "were removed")
+            return error("Some categories have additional articles, but no " +
+                  "categories were removed")
         maybe = {}
+        merges = {}
 
-        # Identify categories that may have been merged by looking for their
-        # contents in another category.
+        # 3. Confirm that categories were not split while merging.
         for m in missing:
             found = False
             for g in grown:
+                # The original category is a subset of the super category
                 if src.cat_arts[m] < out.cat_arts[g]:
                     found = True
                     maybe.setdefault(g, set())
                     maybe[g].add(m)
 
             if not found:
-                error("Category '%s' appears to have been split" % m)
+                for s in survivors:
+                    if src.cat_arts[m] <= src.cat_arts[s]:
+                        found = True
+                        break
 
-        # Verify that at least one set of possible valid merges contains
-        # all of the articles in the super category.
+                if not found:
+                    # The original category's articles cannot all be found in
+                    # one super category, meaning the category was split.
+                    return error("Category '%s' appears to have been split" % m)
+
+        # 4. Confirm that at least one set of possible valid merges contains
+        #    all of the articles in each super category.
         for m in maybe:
-            uf = UnionFind(maybe[m])
-            cats = list(maybe[m])
+            cats = list(maybe[m]) + [m] # be sure to consider the supercat
+            uf = UnionFind(cats)
             for i in range(0, len(cats)):
                 for j in range(i + 1, len(cats)):
                     artsi = src.cat_arts[cats[i]]
                     artsj = src.cat_arts[cats[j]]
+                    print(artsi, artsj)
 
-                    if jaccard(artsi, artsj) > args.threshold:
+                    if jaccard(artsi, artsj) > threshold:
                         uf.union(cats[i], cats[j])
 
             sets = uf.sets()
@@ -104,13 +141,12 @@ def validate(source, output, threshold=0.75, headers=True):
 
                 if arts == out.cat_arts[m]:
                     found = True
-                    break
 
             if not found:
-                error("Not all categories merged into %s are connected" % m)
+                return error("Not all categories merged into %s are connected" % m)
 
     # success, pairs removed, categories removed, super categories, error message
-    return (True, src.pairs - out.pairs, len(src.cats) - len(out.cats), len(grown), None)
+    return results(True, src.pairs - out.pairs, len(src.cats) - len(out.cats), len(grown), None)
 
 
 if __name__ == "__main__":
@@ -133,5 +169,6 @@ if __name__ == "__main__":
         exit(1)
     else:
         print("[PASS] %i pairs and %i categories removed. %i super categories found." % (score[1], score[2], score[3]))
+
 
 
