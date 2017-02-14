@@ -12,17 +12,17 @@ Validation:
     2. No new categories were introduced.
     3. All super categories can be explained as a set of categories in which
        each has a suitable Jaccard similarity with at least one other.
+    3.1. Super categories have the label of the largest contributing category.
 """
 
-from common import jaccard, TallyCollection
-from unionfind import UnionFind
+from .common import jaccard, TallyCollection
+from .unionfind import UnionFind
 
 import argparse
 import csv
 import logging
 
-logging.basicConfig(level=logging.WARN)
-
+logging.basicConfig(level=logging.CRITICAL)
 
 class Taxonomy(object):
     """A taxonomy of categories to articles.
@@ -33,7 +33,7 @@ class Taxonomy(object):
     """
     def __init__(self, infile=None, headers=True):
         self.cat_arts = {}
-        self.art_cats = {}
+        self.art_cats = {} # probably no longer necessary
         self.arts = set()
         self.cats = set()
         self.pairs = 0
@@ -57,8 +57,8 @@ class Taxonomy(object):
             if not headers or (head[0] != "category" or head[1] != "article"):
                 csvfile.seek(0)
 
-            for cat, skill in reader:
-                self.add(cat, skill)
+            for cat, art in reader:
+                self.add(cat, art)
 
 def validate(source, output, threshold=0.75, headers=True):
     """Validate and score the results of category elimination.
@@ -86,9 +86,9 @@ def validate(source, output, threshold=0.75, headers=True):
     src = Taxonomy(source)
     out = Taxonomy(output)
 
-    # 1. Confirm that all skills are present
-    if src.skills != out.skills:
-        return error("Some skills are missing")
+    # 1. Confirm that all articles are present
+    if src.arts != out.arts:
+        return error("Some articles are missing")
 
     # 2. Confirm that no new categories were introduced.
     if len(out.cats - src.cats) != 0:
@@ -101,43 +101,22 @@ def validate(source, output, threshold=0.75, headers=True):
     if len(grown) > 0:
         if len(missing) == 0:
             return error("Some categories have additional articles, but no " +
-                  "categories were removed")
-        maybe = {}
-        merges = {}
+                         "categories were removed")
 
-        # 3. Confirm that categories were not split while merging.
+        # Identify possible merge candidates as categories whose articles are a
+        # subset of the super category.
+        maybe = {}
         for m in missing:
-            found = False
             for g in grown:
-                # 3.1. The original category is a subset of the super category.
                 if src.cat_arts[m] < out.cat_arts[g]:
-                    found = True
                     maybe.setdefault(g, set())
                     maybe[g].add(m)
 
-            if not found:
-                # 3.2. Find removed categories to prevent a false error below.
-                arts = list(src.cat_arts[m])
-                for a in src.cat_arts[m]:
-                    cats = src.art_cats[a]
-                    ix = cats & survivors
-                    if ix:
-                        for art in ix:
-                            del arts[arts.index(art)]
-
-                found = len(art) == 0
-
-                if not found:
-                    # 3.3. The original category's articles cannot all be found
-                    #      in one super category, meaning the category was
-                    #      split.
-                    return error("Category '%s' appears to have been split" % m)
-
-        # 4. Confirm that at least one set of possible valid merges contains
+        # 3. Confirm that at least one set of possible valid merges contains
         #    all of the articles in each super category.
         merges = {}
         for m in maybe:
-            # 4.1. Map possible merge operations in a union-find
+            # Map possible merge operations in a union-find
             cats = list(maybe[m]) + [m] # be sure to consider the supercat
             uf = UnionFind(cats)
             for i in range(0, len(cats)):
@@ -148,8 +127,8 @@ def validate(source, output, threshold=0.75, headers=True):
                     if jaccard(artsi, artsj) > threshold:
                         uf.union(cats[i], cats[j])
 
-            # 4.2. Confirm that at least one set of merges produces the exact
-            #      contents of the super category.
+            # Confirm that at least one set of merges produces the exact
+            # contents of the super category.
             sets = uf.sets()
             merges[m] = sets
             found = False
@@ -168,12 +147,24 @@ def validate(source, output, threshold=0.75, headers=True):
                         labeled = True
 
             if not found:
+                # Note: this error will *not* be produced by removed categories
+                # because their articles are merged into the set above. Is this
+                # accurate?
                 return error("Not all categories merged into %s are connected" % m)
 
             if not labeled:
-                return error("Invalid label for supercategory %s" % m)
+                #return error("Invalid label for supercategory %s" % m)
+                pass
 
-        print(merges)
+        arts = set()
+        for cat in survivors:
+            arts = arts | src.cat_arts[cat]
+        needed = src.arts - arts
+
+        # If all articles can be found in non-merged categories, who cares?
+        if needed:
+            #print(len(merges) * sum([len(c) for c in m for m in merges])
+            pass
 
     # success, pairs removed, categories removed, super categories, error message
     return results(True, src.pairs - out.pairs, len(src.cats) - len(out.cats), len(grown), None)
@@ -187,11 +178,13 @@ if __name__ == "__main__":
 
     parser.add_argument("--threshold", help="merge threshold as minimum Jaccard similarity", default=0.75, type=float, required=False)
 
-    parser.add_argument("--headers", help="read and write column headers", action="store_true")
+    parser.add_argument("--headers", help="detect column headers", action="store_true")
     parser.add_argument("--no-headers", action="store_false", dest="headers")
     parser.set_defaults(headers=True)
 
     args = parser.parse_args()
+
+    logging.basicConfig(level=logging.DEBUG)
 
     score = validate(args.source, args.output, args.threshold, args.headers)
     if not score[0]:
