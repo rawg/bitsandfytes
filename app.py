@@ -38,8 +38,10 @@ def get_score():
     else:
         username = ""
 
+    username_anon = dao.random_name()
+
     files = dao.files()
-    return render_template("score.html", files=files, username=username)
+    return render_template("score.html", files=files, username=username, username_anon=username_anon)
 
 @app.route("/score", methods=["POST"])
 def post_score():
@@ -52,6 +54,10 @@ def post_score():
     src = dao.file_by_id(request.form["source"])
     r = validate(src[3], fn)
     un = request.form["username"]
+    if not un:
+        un = request.form["username_anon"]
+        if not un:
+            un = dao.random_name()
 
     dao.put_run(src[0], un, r[1], r[2], r[3], r[0])
 

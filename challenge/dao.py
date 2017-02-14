@@ -3,11 +3,13 @@
 
 
 """
-import sqlite3
 import os
+import random
+import sqlite3
 
 
 dbfile = os.environ["FLASK_DB_FILE"] if "FLASK_DB_FILE" in os.environ else "data/data.db"
+namesfile = os.environ["FLASK_NAMES_FILE"] if "FLASK_NAMES_FILE" in os.environ else "data/names.txt"
 
 conn = sqlite3.connect(dbfile)
 db = conn.cursor()
@@ -92,3 +94,10 @@ def file_exists_name(filename):
 def file_by_id(idx):
     db.execute("select id, name, md5, path from files where id = ?", (idx, ))
     return db.fetchone()
+
+def random_name():
+    with open(namesfile) as f:
+        lines = f.read().splitlines()
+        return random.choice(lines)
+
+    return "Uncertain Urn"
