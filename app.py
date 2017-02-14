@@ -19,8 +19,8 @@ app = Flask(__name__)
 app.secret_key = "cURYjtPpVO6LzUO/mMndtw=="
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
-ulpath = os.environ["FLASK_UL_PATH"] if "FLASK_UL_PATH" in os.environ else "static/sources/"
-tmppath = os.environ["FLASK_TEMP_PATH"] if "FLASK_TEMP_PATH" in os.environ else "static/tmp/"
+ulpath = os.environ["FLASK_UL_PATH"] if "FLASK_UL_PATH" in os.environ else "data/sources/"
+tmppath = os.environ["FLASK_TEMP_PATH"] if "FLASK_TEMP_PATH" in os.environ else "data/tmp/"
 
 def md5(full_path):
     return hashlib.md5(open(full_path, 'rb').read()).hexdigest()
