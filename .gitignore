@@ -89,10 +89,10 @@ ENV/
 .ropeproject
 
 # Stuff for this project
-data.db
 *.csv
-static/sources/*
-static/tmp/*
-!static/sources/dir.txt
-!static/tmp/dir.txt
+data/sources/*
+data/tmp/*
+data/data.db
+!data/sources/dir.txt
+!data/tmp/dir.txt
 

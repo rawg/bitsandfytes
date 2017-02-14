@@ -7,7 +7,7 @@ import sqlite3
 import os
 
 
-dbfile = os.environ["FLASK_DB_FILE"] if "FLASK_DB_FILE" in os.environ else "data.db"
+dbfile = os.environ["FLASK_DB_FILE"] if "FLASK_DB_FILE" in os.environ else "data/data.db"
 
 conn = sqlite3.connect(dbfile)
 db = conn.cursor()
