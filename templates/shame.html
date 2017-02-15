@@ -1,20 +1,9 @@
 {% include "header.html" %}
 
     <div class="container">
-		<div class="jumbotron">
-			<h1>Code Fight: Category Elimination!</h1>
-			<p>Wikipedia's data model has articles and categories, with a
-			many-to-many relationship between the two. A recent project called
-			for removing categories that added little or no information.</p>
-
-			<p>The challenge is to minimize the number of category-article
-			pairs across several sample datasets by removing whole categories
-			without leaving any articles sans category.</p>
-
-		</div>
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-			<h1>Leaderboard</h1>
+			<h1>Wall of Shame</h1>
 
 			{% for file, scores in runs.items() %}
 			<h2>{{ file }} <a href="/sources/{{ files[file]["id"] }}"><span class="glyphicon glyphicon-download"></span></a></h2>
@@ -23,6 +12,7 @@
 					<tr>
 						<th>Username</th>
 						<th>Date</th>
+						<th>Error Message</th>
 						<th>Pairs Removed</th>
 						<th>Categories Removed</th>
 						<th>Super Categories</th>
@@ -32,6 +22,7 @@
 				<tr>
 					<td class="user">{{ score["user"] }}</td>
 					<td class="dt_added">{{ score["dt_added"] }}</td>
+					<td class="message">{{ score["message"] }}</td>
 					<td class="pairs">{{ score["pairs"] }}</td>
 					<td class="cats">{{ score["cats"] }}</td>
 					<td class="supercats">{{ score["supercats"] }}</td>

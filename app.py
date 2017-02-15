@@ -22,6 +22,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 ulpath = os.environ["FLASK_UL_PATH"] if "FLASK_UL_PATH" in os.environ else "data/sources/"
 tmppath = os.environ["FLASK_TEMP_PATH"] if "FLASK_TEMP_PATH" in os.environ else "data/tmp/"
 
+
 def md5(full_path):
     return hashlib.md5(open(full_path, 'rb').read()).hexdigest()
 
@@ -29,7 +30,13 @@ def md5(full_path):
 def index():
     runs = dao.runs()
     files = dao.files(keys=True)
-    return render_template("index.html", runs=runs, files=files)
+    return render_template("index.html", runs=runs, files=files, navs=dao.navitems())
+
+@app.route("/shame")
+def shame():
+    runs = dao.runs(success=False)
+    files = dao.files(keys=True)
+    return render_template("shame.html", runs=runs, files=files, navs=dao.navitems())
 
 @app.route("/score", methods=["GET"])
 def get_score():
@@ -41,7 +48,7 @@ def get_score():
     username_anon = dao.random_name()
 
     files = dao.files()
-    return render_template("score.html", files=files, username=username, username_anon=username_anon)
+    return render_template("score.html", files=files, username=username, username_anon=username_anon, navs=dao.navitems())
 
 @app.route("/score", methods=["POST"])
 def post_score():
@@ -59,12 +66,20 @@ def post_score():
         if not un:
             un = dao.random_name()
 
-    dao.put_run(src[0], un, r[1], r[2], r[3], r[0])
+    dao.put_run(src[0], un, r["pairs"], r["cats"], r["supercats"], r["merges"],
+                r["success"], r["message"])
 
-    if not r[0]:
-        flash(r[4], "error")
+    if not r["success"]:
+        flash(r["message"], "error")
     else:
-        flash("Removed %i pairs and %i categories. %i super categories detected." % (r[1], r[2], r[3]), "success")
+        msg = "Removed %i pairs and %i categories. " % (r["pairs"], r["cats"])
+        msg += "%i super categories detected" % r["supercats"]
+        if int(r["merges"]) > 0:
+            msg += " after at least %i merges." % r["merges"]
+        else:
+            msg += "."
+
+        flash(msg, "success")
 
     response = make_response(redirect(url_for("get_score")))
     response.set_cookie("username", un)
@@ -72,7 +87,7 @@ def post_score():
 
 @app.route("/sources", methods=["GET"])
 def get_sources():
-    return render_template("sources.html")
+    return render_template("sources.html", navs=dao.navitems())
 
 @app.route("/sources", methods=["POST"])
 def post_source():
@@ -102,3 +117,8 @@ def get_source(source):
 @app.route('/<path:filename>')
 def all_static(filename):
     return send_from_directory("static", filename)
+
+@app.route("/nav/<item>/<enabled>")
+def nav_item(item, enabled):
+    dao.set_nav(str(item), int(enabled))
+    return redirect(url_for("index"))

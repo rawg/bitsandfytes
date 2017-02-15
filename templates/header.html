@@ -39,6 +39,13 @@
 		  <ul class="nav navbar-nav">
 			  <li{%- if request.path == "/" %} class="active"{% endif %}><a href="/">Leaderboard</a></li>
 			  <li{%- if request.path == "/score" %} class="active"{% endif %}><a href="/score">Score Me!</a></li>
+			  {%- if "shame" in navs and navs["shame"] %}
+			  <li{%- if request.path == "/shame" %} class="active"{% endif %}><a href="/shame">Wall of Shame</a></li>
+			  {% endif %}
+			  {%- if "sources" in navs and navs["sources"] %}
+			  <li{%- if request.path == "/sources" %} class="active"{% endif %}><a href="/sources">Add Dataset</a></li>
+			  {% endif %}
+
 		  </ul>
 		  <form class="navbar-form navbar-left">
 		  </form>

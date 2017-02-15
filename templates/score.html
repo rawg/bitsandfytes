@@ -9,9 +9,9 @@
 						<div id="messages">
 						{% for category, message in messages %}
 							{% if category == "error" %}
-								<p class="bg-warning">
+								<div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span>
 							{% elif category == "success" %}
-								<p class="bg-success">
+								<div class="alert alert-success">
 							{% endif %}
 							{{ message }}</p>
 						{% endfor %}
@@ -27,7 +27,7 @@
 				  <div class="form-group">
 					  <label for="file">Results</label>
 					  <input type="file" class="form-control dropzone" name="file" />
-					  <p class="help-block">Your best results yet as a two
+					  <p class="help-block">Upload your best results yet as a two
 					  column CSV of categories and articles. Header row
 					  optional, but can only contain the column headings
 					  "category" and "article".</p>
