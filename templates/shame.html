@@ -6,7 +6,10 @@
 			<h1>Wall of Shame</h1>
 
 			{% for file, scores in runs.items() %}
-			<h2>{{ file }} <a href="/sources/{{ files[file]["id"] }}"><span class="glyphicon glyphicon-download"></span></a></h2>
+			<h2><a href="/sources/{{ files[file]["id"] }}"><span class="glyphicon glyphicon-download"></span></a>
+				{{ file }}
+				<small>{{ files[file]["descr"] }}</small>
+			</h2>
 				<p>{{ files[file]["descr"] }}</p>
 				<table class="table table-striped">
 					<tr>
