@@ -28,7 +28,6 @@ class Taxonomy(object):
     """
     def __init__(self, infile=None, headers=True):
         self.cat_arts = {}
-        self.art_cats = {} # probably no longer necessary
         self.arts = set()
         self.cats = set()
         self.pairs = 0
@@ -38,8 +37,6 @@ class Taxonomy(object):
     def add(self, cat, art):
         self.cat_arts.setdefault(cat, set())
         self.cat_arts[cat].add(art)
-        self.art_cats.setdefault(art, set())
-        self.art_cats[art].add(cat)
         self.arts.add(art)
         self.cats.add(cat)
         self.pairs += 1
