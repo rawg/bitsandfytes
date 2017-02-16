@@ -56,11 +56,11 @@ class Taxonomy(object):
                 self.add(cat, art)
 
 
-def all_combinations(ls):
+def all_combinations(ls, minlength=2):
     """Return all combinations of elements in a list"""
     ret = [ls]
 
-    for length in range(1, len(ls)):
+    for length in range(minlength, len(ls)):
         combs = list(combinations(ls, length))
         for c in combs:
             ret.append(list(c))
@@ -99,8 +99,9 @@ def validate(source, output, threshold=0.75, headers=True):
     def error(msg):
         return results(False, 0, 0, 0, 0, msg)
 
-    def union_find(cats):
+    def union_find(cats, debug=False):
         """Return a UnionFind of homogeneous categories"""
+        cats = list(cats)
         uf = UnionFind(cats)
         for i in range(0, len(cats)):
             for j in range(i + 1, len(cats)):
@@ -109,12 +110,13 @@ def validate(source, output, threshold=0.75, headers=True):
 
                 if jaccard(artsi, artsj) > threshold:
                     uf.union(cats[i], cats[j])
+
         return uf
 
 
     # 1. Confirm that all articles are present
-    if src.arts != out.arts:
-        return error("Some articles are missing")
+    if len(src.arts - out.arts) != 0:
+        return error("Some articles are missing: %s..." % ", ".join(list(src.arts - out.arts)[:10]))
 
     # 2. Confirm that no new categories were introduced.
     if len(out.cats - src.cats) != 0:
@@ -123,7 +125,6 @@ def validate(source, output, threshold=0.75, headers=True):
     missing = src.cats - out.cats
     grown = [cat for cat in out.cats if src.cat_arts[cat] != out.cat_arts[cat]]
     merges = {}
-    #survivors = src.cats - missing - set(grown)
 
     if len(grown) > 0:
         if len(missing) == 0:
@@ -141,33 +142,32 @@ def validate(source, output, threshold=0.75, headers=True):
 
         # 3. Confirm that at least one set of possible valid merges contains
         #    all of the articles in each super category.
-        for m in maybe: # {m: [c1, c2, c3, ...]}
+        for g in maybe: # {g: [c1, c2, c3, ...]}
             # Map possible merge operations in a union-find
-            uf = union_find(list(maybe[m]) + [m]) # be sure to consider the supercat
-            sets = uf.sets()
-            merges[m] = []
-            found = False
-            labeled = True
+            uf = union_find(list(maybe[g]) + [g]) # be sure to consider the supercat
+            sets = uf.sets(unary=False, contains=g)
+
+            merges[g] = []
 
             for union in sets:
                 for cats in all_combinations(union):
-                    max_len = 0
-                    arts = set()
-                    uf = union_find(cats).sets()
+                    uf = union_find(cats).sets(unary=False, contains=g)
+                    for union2 in uf:
+                        #max_len = 0
+                        arts = set()
 
-                    for cat in cats:
-                        max_len = max(max_len, len(src.cat_arts[cat]))
-                        arts = arts | src.cat_arts[cat]
+                        for cat in union2:
+                            #max_len = max(max_len, len(src.cat_arts[cat]))
+                            arts = arts | src.cat_arts[cat]
 
-                    all_arts = arts == out.cat_arts[m]
-                    labeled = len(src.cat_arts[m]) >= max_len
-                    homogeneous = len(uf) == 1 and len(uf[0]) == len(cats)
+                        all_arts = arts == out.cat_arts[g]
+                        #labeled = len(src.cat_arts[m]) >= max_len
 
-                    if all_arts and labeled and homogeneous:
-                        merges[m].append(cats)
+                        if all_arts: # and homogeneous: #and labeled
+                            merges[g].append(cats)
 
-            if len(merges[m]) == 0:
-                return error("Not all categories merged into %s are connected by homogeneity OR the category label is wrong" % m)
+            if len(merges[g]) == 0:
+                return error("Not all categories merged into %s are connected by homogeneity OR the category label is wrong" % g)
 
     pairs = src.pairs - out.pairs
     cats = len(src.cats) - len(out.cats)

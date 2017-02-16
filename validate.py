@@ -14,7 +14,7 @@ from challenge.validate import validate
 if __name__ == "__main__":
     # Parse command line arguments
     parser = argparse.ArgumentParser(description="Validate submission output.")
-    parser.add_argument("-s", "--source", help="source data file", default="category-article.csv", required=False)
+    parser.add_argument("-i", "--input", help="input (original source) data file", default="category-article.csv", required=False)
     parser.add_argument("-o", "--output", help="output data file", default="reduced.csv", required=False)
 
     parser.add_argument("--threshold", help="merge threshold as minimum Jaccard similarity", default=0.75, type=float, required=False)
@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
     logging.basicConfig(level=logging.DEBUG)
 
-    score = validate(args.source, args.output, args.threshold, args.headers)
+    score = validate(args.input, args.output, args.threshold, args.headers)
     if not score["success"]:
         print("[FAIL] %s" % score["message"])
         exit(1)

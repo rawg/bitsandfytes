@@ -12,6 +12,7 @@ import argparse
 import csv
 import logging
 import operator
+import random
 
 
 logging.basicConfig(level=logging.INFO)
@@ -23,6 +24,7 @@ parser.add_argument("-i", "--infile", help="input file", default="category-artic
 parser.add_argument("-o", "--outfile", help="output file", default="reduced.csv", required=False)
 
 parser.add_argument("--threshold", help="merge threshold as minimum Jaccard similarity", default=0.75, type=float, required=False)
+parser.add_argument("--handicap", help="handicap (0.0-1.0)", default=0.0, type=float, required=False)
 
 parser.add_argument("--headers", help="read and write column headers", action="store_true")
 parser.add_argument("--no-headers", action="store_false", dest="headers")
@@ -44,6 +46,8 @@ cat_counts = {}
 skill_counts = TallyCollection()
 ncats = 0
 start_pairs = 0
+rm_ops = 0
+mg_ops = 0
 
 # Read input data
 with open(args.infile, "r") as csvfile:
@@ -80,10 +84,15 @@ def remove():
     """
 
     def rm(cat):
-        logging.info("REMOVE: %s" % cat)
-        skill_counts.decr(cat_arts[cat])
-        del cat_counts[cat]
-        del cat_arts[cat]
+        global rm_ops
+        if random.random() >= args.handicap:
+            logging.info("REMOVE: %s" % cat)
+            rm_ops += 1
+            skill_counts.decr(cat_arts[cat])
+            del cat_counts[cat]
+            del cat_arts[cat]
+        else:
+            logging.info("HANDICAP: Skipping removal of %s" % cat)
 
     approach = sorted(cat_counts.items(), key=operator.itemgetter(1))
 
@@ -108,6 +117,7 @@ def remove():
 
 def merge():
     """Merge categories."""
+    global mg_ops
     cats = list(cat_arts.keys())
     uf = UnionFind(cats)
     ncats = len(cat_arts)
@@ -117,30 +127,29 @@ def merge():
             cat1, cat2 = cats[i], cats[j]
 
             if jaccard(cat_arts[cat1], cat_arts[cat2]) > args.threshold:
-                if cat_counts[cat1] > cat_counts[cat2]:
-                    parent, child = cat1, cat2
-                else:
-                    parent, child = cat2, cat1
+                uf.union([cat1, cat2])
 
-                parent2 = uf.parent(child)
-                if parent2 != child:
-                    if cat_counts[parent2] >= cat_counts[parent]:
-                        uf.union([parent, child], parent2)
-                    else:
-                        uf.union([parent2, child], parent)
-                else:
-                    uf.union(child, parent)
+    sets = uf.sets()
+    for group in sets:
+        mg_ops += len(group) - 1
 
-    children = uf.children()
-    for parent in children:
-        for child in children[parent]:
-            logging.info("MERGE: %s -> %s" % (child, parent))
-            rm = cat_arts[parent] & cat_arts[child]
-            skill_counts.decr(rm)
-            mv = cat_arts[child] - rm
-            for m in mv:
-                cat_arts[parent].add(m)
-            del cat_arts[child]
+        size = 0
+        parent = None
+        for cat in group:
+            l = len(cat_arts[cat])
+            if l > size:
+                size = l
+                parent = cat
+
+        for cat in group:
+            if cat != parent:
+                if random.random() >= args.handicap:
+                    logging.info("MERGE: %s -> %s" % (cat, parent))
+                    skill_counts.decr(cat_arts[cat] & cat_arts[parent])
+                    cat_arts[parent] |= cat_arts[cat]
+                    del cat_arts[cat]
+                else:
+                    logging.info("HANDICAP: Skipping merge of %s -> %s" % (child, parent))
 
 
 if args.remove:
@@ -153,6 +162,8 @@ if args.merge:
 end_pairs = sum([len(cat_arts[arts]) for arts in cat_arts])
 
 print("Removed %i of %i pairs; %i remain." % (start_pairs - end_pairs, start_pairs, end_pairs))
+print("Remove operations: %i" % rm_ops)
+print("Merge operations: %i" % mg_ops)
 
 with open(args.outfile, "w") as csvfile:
     writer = csv.writer(csvfile)

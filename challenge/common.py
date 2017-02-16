@@ -11,16 +11,19 @@ class TallyCollection(object):
         self.counts = {}
 
     def inc(self, key):
+        """Increment a key"""
         self.counts.setdefault(key, 0)
         self.counts[key] += 1
 
     def nonzero(self, keys):
+        """Will a key be nonzero after decrementing?"""
         for key in keys:
             if self.counts[key] <= 1:
                 return False
         return True
 
     def decr(self, keys):
+        """Decrement a key"""
         for key in keys:
             self.counts[key] -= 1
 
