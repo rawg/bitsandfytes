@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+
+
+"""
+
+import argparse
+import logging
+from os import listdir, system, chdir
+from os.path import isfile, join, abspath
+
+logging.basicConfig(level=logging.INFO)
+
+parser = argparse.ArgumentParser(description="Solve all sample datasets")
+parser.add_argument("--handicap", help="handicap (0.0-1.0)", default=0.0, type=float, required=False)
+args = parser.parse_args()
+
+inpath = "../datasets"
+outpath = "../solutions"
+
+for f in listdir(inpath):
+	infile = abspath(join(inpath, f))
+	if isfile(infile):
+		parts = f.split(".")
+		outname = ".".join(parts[:-1] + ["hc%i" % args.handicap, parts[-1]])
+		outfile = abspath(join(outpath, outname))
+		print("Solving %s" % f)
+		system("python solution.py -i '%s' -o '%s' --handicap=%d -L warning" % (infile, outfile, args.handicap))
+		chdir("..")
+		print("Validating %s" % f)
+		system("python validate.py -i '%s' -o '%s'" % (infile, outfile))
+		chdir("challenge")
+		print("")
