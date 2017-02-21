@@ -23,9 +23,20 @@ if __name__ == "__main__":
     parser.add_argument("--no-headers", action="store_false", dest="headers")
     parser.set_defaults(headers=True)
 
+    parser.add_argument("-L", "--log-level", help="logging level", choices=["info", "debug", "warning", "error", "critical"],
+                        default="info")
+
     args = parser.parse_args()
 
-    logging.basicConfig(level=logging.DEBUG)
+    choices = {
+        "info": logging.INFO,
+        "debug": logging.DEBUG,
+        "warning": logging.WARNING,
+        "error": logging.ERROR,
+        "critical": logging.CRITICAL
+    }
+    logging.basicConfig(level=choices[args.log_level])
+
 
     score = validate(args.input, args.output, args.threshold, args.headers)
     if not score["success"]:

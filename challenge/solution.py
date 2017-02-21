@@ -14,17 +14,13 @@ import logging
 import operator
 import random
 
-
-logging.basicConfig(level=logging.INFO)
-
-
 # Parse command line arguments
 parser = argparse.ArgumentParser(description="Reduce category-article pairs.")
 parser.add_argument("-i", "--infile", help="input file", default="category-article.csv", required=False)
 parser.add_argument("-o", "--outfile", help="output file", default="reduced.csv", required=False)
 
-parser.add_argument("--threshold", help="merge threshold as minimum Jaccard similarity", default=0.75, type=float, required=False)
-parser.add_argument("--handicap", help="handicap (0.0-1.0)", default=0.0, type=float, required=False)
+parser.add_argument("--threshold", help="merge threshold as minimum Jaccard similarity", default=0.75, type=float)
+parser.add_argument("--handicap", help="handicap (0.0-1.0)", default=0.0, type=float)
 
 parser.add_argument("--headers", help="read and write column headers", action="store_true")
 parser.add_argument("--no-headers", action="store_false", dest="headers")
@@ -38,7 +34,21 @@ parser.add_argument("--merge", help="merge categories", action="store_true")
 parser.add_argument("--no-merge", action="store_false", dest="merge")
 parser.set_defaults(merge=True)
 
+parser.add_argument("--merge-first", help="merge before removing", action="store_true", default=False)
+
+parser.add_argument("-L", "--log-level", help="logging level", choices=["info", "debug", "warning", "error", "critical"],
+                    default="info")
+
 args = parser.parse_args()
+
+choices = {
+    "info": logging.INFO,
+    "debug": logging.DEBUG,
+    "warning": logging.WARNING,
+    "error": logging.ERROR,
+    "critical": logging.CRITICAL
+}
+logging.basicConfig(level=choices[args.log_level])
 
 # Globals...
 cat_arts = {}
@@ -58,12 +68,15 @@ with open(args.infile, "r") as csvfile:
 
     for cat, skill in reader:
         cat_arts.setdefault(cat, set())
+
+        if skill not in cat_arts[cat]:
+            skill_counts.inc(skill)
+
         cat_arts[cat].add(skill)
 
         cat_counts.setdefault(cat, 0)
         cat_counts[cat] += 1
 
-        skill_counts.inc(skill)
         start_pairs += 1
 
 logging.debug("Loaded input data")
@@ -87,6 +100,7 @@ def remove():
         global rm_ops
         if random.random() >= args.handicap:
             logging.info("REMOVE: %s" % cat)
+            logging.debug("DECREMENT %s" % str(cat_arts[cat]))
             rm_ops += 1
             skill_counts.decr(cat_arts[cat])
             del cat_counts[cat]
@@ -94,24 +108,21 @@ def remove():
         else:
             logging.info("HANDICAP: Skipping removal of %s" % cat)
 
-    approach = sorted(cat_counts.items(), key=operator.itemgetter(1))
+    # Create a vector of categories to attempt to remove. Start with categories
+    # that only have one article, then move on to categories sorted by # articles
+    # descending.  Once we're through the single article categories, the more
+    # articles are in a category the more likely it is to be safe to remove.
+    approach = []
+    sort = []
+    for cat in cat_arts:
+        if len(cat_arts[cat]) == 1:
+            approach.append(cat)
+        else:
+            sort.append(cat)
+    approach += sorted(sort, reverse=True)
 
-    # Search in ascending order to start with one article categories
-    for i, v in enumerate(approach):
-        cat, narts = v
-
-        if narts > 1:
-            approach = approach[i+1:]
-            break
-
-        if skill_counts.nonzero(cat_arts[cat]):
-            rm(cat)
-
-    # Once unary categories have been searched, reverse the order and
-    # search larger categories first. Note: `reversed()` does not create a copy.
-    for i, v in enumerate(reversed(approach)):
-        cat, narts = v
-        if skill_counts.nonzero(cat_arts[cat]):
+    for cat in approach:
+        if skill_counts.can_decr(cat_arts[cat]):
             rm(cat)
 
 
@@ -141,21 +152,24 @@ def merge():
                 size = l
                 parent = cat
 
-        for cat in group:
-            if cat != parent:
-                if random.random() >= args.handicap:
+        if random.random() >= args.handicap:
+            for cat in group:
+                if cat != parent:
                     logging.info("MERGE: %s -> %s" % (cat, parent))
                     skill_counts.decr(cat_arts[cat] & cat_arts[parent])
                     cat_arts[parent] |= cat_arts[cat]
                     del cat_arts[cat]
-                else:
-                    logging.info("HANDICAP: Skipping merge of %s -> %s" % (child, parent))
+        else:
+            logging.info("HANDICAP: Skipping merge of %s -> %s" % (cat, parent))
 
+
+if args.merge_first and args.merge:
+    merge()
 
 if args.remove:
     remove()
 
-if args.merge:
+if not args.merge_first and args.merge:
     merge()
 
 

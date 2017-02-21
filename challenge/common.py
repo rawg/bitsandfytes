@@ -15,10 +15,10 @@ class TallyCollection(object):
         self.counts.setdefault(key, 0)
         self.counts[key] += 1
 
-    def nonzero(self, keys):
+    def can_decr(self, keys):
         """Will a key be nonzero after decrementing?"""
         for key in keys:
-            if self.counts[key] <= 1:
+            if key not in self.counts or self.counts[key] <= 1:
                 return False
         return True
 

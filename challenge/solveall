@@ -16,19 +16,20 @@ parser = argparse.ArgumentParser(description="Solve all sample datasets")
 parser.add_argument("--handicap", help="handicap (0.0-1.0)", default=0.0, type=float, required=False)
 args = parser.parse_args()
 
+hc = "%05.4f" % args.handicap
 inpath = "../datasets"
 outpath = "../solutions"
 
 for f in listdir(inpath):
-	infile = abspath(join(inpath, f))
-	if isfile(infile):
-		parts = f.split(".")
-		outname = ".".join(parts[:-1] + ["hc%i" % args.handicap, parts[-1]])
-		outfile = abspath(join(outpath, outname))
-		print("Solving %s" % f)
-		system("python solution.py -i '%s' -o '%s' --handicap=%d -L warning" % (infile, outfile, args.handicap))
-		chdir("..")
-		print("Validating %s" % f)
-		system("python validate.py -i '%s' -o '%s'" % (infile, outfile))
-		chdir("challenge")
-		print("")
+    infile = abspath(join(inpath, f))
+    if isfile(infile):
+        parts = f.split(".")
+        outname = ".".join(parts[:-1] + ["hc%s" % str(args.handicap), parts[-1]])
+        outfile = abspath(join(outpath, outname))
+        print("Solving %s" % f)
+        system("python solution.py -i '%s' -o '%s' --handicap=%s -L warning" % (infile, outfile, str(args.handicap)))
+        chdir("..")
+        print("Validating %s" % f)
+        system("python validate.py -i '%s' -o '%s'" % (infile, outfile))
+        chdir("challenge")
+        print("")

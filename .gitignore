@@ -90,6 +90,7 @@ ENV/
 
 # Stuff for this project
 *.csv
+!datasets/*csv
 data/sources/*
 data/tmp/*
 data/data.db

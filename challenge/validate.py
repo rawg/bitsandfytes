@@ -9,15 +9,12 @@ Validation:
        each has a suitable Jaccard similarity with at least one other.
     3.1. Super categories have the label of the largest contributing category.
 """
-
-from .common import jaccard, TallyCollection
-from .unionfind import UnionFind
-
 import csv
-import logging
+#import logging
 from itertools import combinations
 
-logging.basicConfig(level=logging.CRITICAL)
+from .common import jaccard
+from .unionfind import UnionFind
 
 class Taxonomy(object):
     """A taxonomy of categories to articles.
