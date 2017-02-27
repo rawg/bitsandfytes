@@ -128,7 +128,7 @@ def remove():
 
 def merge():
     """Merge categories."""
-    global mg_ops
+    global mg_ops     # dirty :(
     cats = list(cat_arts.keys())
     uf = UnionFind(cats)
     ncats = len(cat_arts)

@@ -116,8 +116,19 @@ def validate(source, output, threshold=0.75, headers=True):
     if len(out.cats - src.cats) != 0:
         return error("Categories were introduced")
 
+    # 3. Confirm that at least one set of possible valid merges contains
+    #    all of the articles in each super category.
+    #
+    #    You should buckle in.
+    #
+
+    # Categories in the source but not the output
     missing = src.cats - out.cats
+
+    # Possible supercategories: categories with more articles in the output than in the source
     grown = [cat for cat in out.cats if src.cat_arts[cat] != out.cat_arts[cat]]
+
+    # All possible merge operations keyed by supercategory.
     merges = {}
 
     if len(grown) > 0:
@@ -134,34 +145,53 @@ def validate(source, output, threshold=0.75, headers=True):
                     maybe.setdefault(g, set())
                     maybe[g].add(m)
 
-        # 3. Confirm that at least one set of possible valid merges contains
-        #    all of the articles in each super category.
-        for g in maybe: # {g: [c1, c2, c3, ...]}
-            # Map possible merge operations in a union-find
-            uf = union_find(list(maybe[g]) + [g]) # be sure to consider the supercat
-            sets = uf.sets(unary=False, contains=g)
+        for merged in maybe: # {merged: [c1, c2, c3, ...]}
 
-            merges[g] = []
+            # Map possible merge operations in a union-find / disjoint set.
+            # Note: don't forget to include the supercategory!
+            uf = union_find(list(maybe[merged]) + [merged])
+
+            # Retrieve a list of all sets with more than one member AND that
+            # contain our suspected super category.
+            sets = uf.sets(unary=False, contains=merged)
+
+            # Possible merge explanations
+            merges[merged] = []
+
+            # Size of the source category bearing the supercategory's label.
+            msize = len(src.cat_arts[merged])
 
             for union in sets:
+                # For each set, consider all possible arrangements of members.
+                # If an arrangement is 1) fully connected in that all members
+                # have a Jaccard index above the threshold and 2) all members
+                # have length equal to or less than the supercategory label,
+                # then the arrangement represents a possible merge.
                 for cats in all_combinations(union):
-                    uf = union_find(cats).sets(unary=False, contains=g)
-                    for union2 in uf:
-                        #max_len = 0
-                        arts = set()
 
-                        for cat in union2:
-                            #max_len = max(max_len, len(src.cat_arts[cat]))
-                            arts = arts | src.cat_arts[cat]
+                    # If the category label is acceptable...
+                    if msize >= max([len(src.cat_arts[c]) for c in cats]):
 
-                        all_arts = arts == out.cat_arts[g]
-                        #labeled = len(src.cat_arts[m]) >= max_len
+                        # Again, use a union-find to find all connected sets.
+                        uf = union_find(cats).sets(unary=False, contains=merged)
 
-                        if all_arts: # and homogeneous: #and labeled
-                            merges[g].append(cats)
+                        for union2 in uf:
+                            arts = set()
+                            for cat in union2:
+                                arts = arts | src.cat_arts[cat]
 
-            if len(merges[g]) == 0:
-                return error("Not all categories merged into %s are connected by homogeneity OR the category label is wrong" % g)
+                            # The merge candidate contains exactly the articles
+                            # found – we have a contender!
+                            if arts == out.cat_arts[merged]:
+                                merges[merged].append(cats)
+
+            # When multiple explanations exist for a supercategory, we needn't
+            # pick one. We just need to know that there was one possible
+            # explanation.
+            if len(merges[merged]) == 0:
+                return error("Not all categories merged into %s are " +
+                             "connected by homogeneity OR the category " +
+                             "label is wrong" % merged)
 
     pairs = src.pairs - out.pairs
     cats = len(src.cats) - len(out.cats)
