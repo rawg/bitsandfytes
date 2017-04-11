@@ -1,0 +1,121 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Code Fight: Category Elimination!</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/jquery-ui.min.css">
+        <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+        <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="score#">Code Fight</a>
+        </div>
+  		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav">
+			  <li><a href="index.html">Leaderboard</a></li>
+			  <li class="active"><a href="score">Score Me!</a></li>
+			  <li><a href="shame">Wall of Shame</a></li>
+			  
+			  <li><a href="sources">Add Dataset</a></li>
+			  
+
+		  </ul>
+		  <form class="navbar-form navbar-left">
+		  </form>
+		  <ul class="nav navbar-nav navbar-right">
+		  </ul>
+		</div>
+      </div>
+    </nav>
+
+    <div class="container">
+		  <div class="row">
+			  <div class="col-md-offset-2 col-md-8">
+				  <h1>Score Me!</h1>
+					
+					
+					
+			  </div>
+		  </div>
+
+	  <div class="row">
+		  <div class="col-md-offset-2 col-md-8">
+			  <form method="post" action="score" enctype="multipart/form-data" class="dropzone">
+				  <div class="form-group">
+					  <label for="file">Results</label>
+					  <input type="file" class="form-control dropzone" name="file" />
+					  <p class="help-block">Upload your best results yet as a two
+					  column CSV of categories and articles. Header row
+					  optional, but can only contain the column headings
+					  "category" and "article".</p>
+				  </div>
+				  <div class="form-group">
+					  <label for="username">Username</label>
+					  <input type="text" class="form-control" name="username"
+						  value="" placeholder="Anonymous Absorption" />
+					  <p class="help-block">Take credit. Or don't.</p>
+					  <input type="hidden" name="username_anon" value="Anonymous Absorption" />
+				  </div>
+				  <div class="form-group">
+					  <label for="source">Source Data</label>
+					  <select name="source" class="form-control">
+						  
+						  <option value="1">category-article.csv: The original challenge dataset.</option>
+						  
+						  <option value="2">multiple-merges.csv: Many merge opportunities.</option>
+						  
+						  <option value="3">redundant-removals.csv: Plenty of chances to remove categories.</option>
+						  
+						  <option value="4">remix.csv: category-article.csv, Gabriel &amp; Dresden Mix</option>
+						  
+						  <option value="5">1.10x10.csv: Small enough to solve manually</option>
+						  
+					  </select>
+				  </div>
+				  <button type="submit" class="btn btn-default">Submit</button>
+			  </form>
+		  </div>
+      </div>
+  </div>
+
+ 
+      <hr>
+	<div class="container">
+      <footer>
+        <p>&copy; 2017</p>
+      </footer>
+    </div> <!-- /container -->        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/jquery-ui.min.js"></script>
+		<!-- <script src="js/vendor/dropzone.js"></script> -->
+
+        <script src="js/main.js"></script>
+    </body>
+</html>

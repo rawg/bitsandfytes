@@ -1,0 +1,1356 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Code Fight: Category Elimination!</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/jquery-ui.min.css">
+        <link rel="stylesheet" href="css/jquery-ui.structure.min.css">
+        <link rel="stylesheet" href="css/jquery-ui.theme.min.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="shame#">Code Fight</a>
+        </div>
+  		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		  <ul class="nav navbar-nav">
+			  <li><a href="index.html">Leaderboard</a></li>
+			  <li><a href="score">Score Me!</a></li>
+			  <li class="active"><a href="shame">Wall of Shame</a></li>
+			  
+			  <li><a href="sources">Add Dataset</a></li>
+			  
+
+		  </ul>
+		  <form class="navbar-form navbar-left">
+		  </form>
+		  <ul class="nav navbar-nav navbar-right">
+		  </ul>
+		</div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+			<h1>Wall of Shame</h1>
+
+			
+			<h2><a href="sources/2"><span class="glyphicon glyphicon-download"></span></a>
+				multiple-merges.csv
+				<small>Many merge opportunities.</small>
+			</h2>
+				<p>Many merge opportunities.</p>
+				<table class="table table-striped">
+					<tr>
+						<th>Username</th>
+						<th>Date</th>
+						<th>Error Message</th>
+						<th>Pairs Removed</th>
+						<th>Categories Removed</th>
+						<th>Super Categories</th>
+						<th>Merges</th>
+					</tr>
+				
+				<tr>
+					<td class="user">test_submit_1</td>
+					<td class="dt_added">2017-02-20 16:48:16</td>
+					<td class="message">Some articles are missing: Color management, Strong authentication, Industrial design, Crisis management, Transition management, Construction administration, Conceptual semantics, Process Monitor, IBM Rational Performance Tester, Facility management...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-20 21:47:25</td>
+					<td class="message">Some articles are missing: Redis, Strategic service management, Industrial design, Ranorex, AngularJS, ArcMap, NMR, SonicWall, SEC filing, Numerical control...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-21 18:51:40</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-21 21:25:51</td>
+					<td class="message">Not all categories merged into arrays are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-21 21:31:38</td>
+					<td class="message">Not all categories merged into wars involving honduras are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-21 21:34:18</td>
+					<td class="message">Not all categories merged into arrays are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-21 21:36:15</td>
+					<td class="message">Not all categories merged into arrays are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">SJN</td>
+					<td class="dt_added">2017-02-22 13:46:19</td>
+					<td class="message">Not all categories merged into garden plants of south america are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Shooting</td>
+					<td class="dt_added">2017-02-22 13:54:23</td>
+					<td class="message">Not all categories merged into ships built in lorain, ohio are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Boo</td>
+					<td class="dt_added">2017-02-22 23:15:40</td>
+					<td class="message">Not all categories merged into markup languages are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Boo</td>
+					<td class="dt_added">2017-02-22 23:25:41</td>
+					<td class="message">Not all categories merged into markup languages are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">sudeep</td>
+					<td class="dt_added">2017-02-23 16:36:26</td>
+					<td class="message">Not all categories merged into red hat software are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Boo</td>
+					<td class="dt_added">2017-02-24 00:11:10</td>
+					<td class="message">Not all categories merged into cantonal capitals of switzerland are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Boo</td>
+					<td class="dt_added">2017-02-24 00:47:43</td>
+					<td class="message">Not all categories merged into cantonal capitals of switzerland are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Boo</td>
+					<td class="dt_added">2017-02-24 01:09:14</td>
+					<td class="message">Not all categories merged into database security are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Boo</td>
+					<td class="dt_added">2017-02-24 01:17:15</td>
+					<td class="message">Not all categories merged into fiscal policy are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Boo</td>
+					<td class="dt_added">2017-02-24 02:21:37</td>
+					<td class="message">Not all categories merged into teleconferencing are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Boo</td>
+					<td class="dt_added">2017-02-24 02:25:44</td>
+					<td class="message">Not all categories merged into teleconferencing are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Boo</td>
+					<td class="dt_added">2017-02-24 04:57:02</td>
+					<td class="message">Not all categories merged into fiscal policy are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Boo</td>
+					<td class="dt_added">2017-02-24 05:06:06</td>
+					<td class="message">Not all categories merged into fiscal policy are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">His Divine Shadow</td>
+					<td class="dt_added">2017-02-26 23:13:30</td>
+					<td class="message">Not all categories merged into human behavior are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">His Divine Shadow</td>
+					<td class="dt_added">2017-02-26 23:15:00</td>
+					<td class="message">Not all categories merged into human behavior are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">His Divine Shadow</td>
+					<td class="dt_added">2017-02-26 23:17:06</td>
+					<td class="message">Not all categories merged into human behavior are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Nope</td>
+					<td class="dt_added">2017-02-26 23:51:31</td>
+					<td class="message">Not all categories merged into human behavior are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Iodoamino</td>
+					<td class="dt_added">2017-02-27 00:18:26</td>
+					<td class="message">Not all categories merged into human behavior are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Iodoamino</td>
+					<td class="dt_added">2017-02-27 00:25:17</td>
+					<td class="message">Not all categories merged into human behavior are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Independence</td>
+					<td class="dt_added">2017-02-27 00:32:39</td>
+					<td class="message">Not all categories merged into ableton live are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Umineko</td>
+					<td class="dt_added">2017-02-27 13:31:56</td>
+					<td class="message">Some articles are missing: Blog, Sinatra, Business service management, Biology, Ciena, PLL, FishEye, WMI, CISO, Oracle BI Publisher...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Umineko</td>
+					<td class="dt_added">2017-02-27 13:40:27</td>
+					<td class="message">Some articles are missing: Blog, Sinatra, Business service management, Biology, Ciena, PLL, FishEye, WMI, CISO, Oracle BI Publisher...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Umineko</td>
+					<td class="dt_added">2017-02-27 14:00:50</td>
+					<td class="message">Not all categories merged into graphics file formats are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Umineko</td>
+					<td class="dt_added">2017-02-27 14:33:41</td>
+					<td class="message">Not all categories merged into graphics file formats are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Kuro Umineko</td>
+					<td class="dt_added">2017-02-27 14:49:02</td>
+					<td class="message">Not all categories merged into software using the psf license are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				</table>
+
+			
+			<h2><a href="sources/5"><span class="glyphicon glyphicon-download"></span></a>
+				1.10x10.csv
+				<small>Small enough to solve manually</small>
+			</h2>
+				<p>Small enough to solve manually</p>
+				<table class="table table-striped">
+					<tr>
+						<th>Username</th>
+						<th>Date</th>
+						<th>Error Message</th>
+						<th>Pairs Removed</th>
+						<th>Categories Removed</th>
+						<th>Super Categories</th>
+						<th>Merges</th>
+					</tr>
+				
+				<tr>
+					<td class="user">Secret Shooting</td>
+					<td class="dt_added">2017-02-23 14:36:29</td>
+					<td class="message">Some articles are missing: 7, 0, 8, 4, 9, 6, 3, 2, 1, 5...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Oily Onion</td>
+					<td class="dt_added">2017-02-26 22:39:14</td>
+					<td class="message">Not all categories merged into 5 are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Nope</td>
+					<td class="dt_added">2017-02-26 23:44:00</td>
+					<td class="message">Not all categories merged into 9 are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Slippery Slope</td>
+					<td class="dt_added">2017-02-26 23:54:09</td>
+					<td class="message">Not all categories merged into 8 are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Slippery Slope</td>
+					<td class="dt_added">2017-02-26 23:54:26</td>
+					<td class="message">Not all categories merged into 8 are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Slippery Slope</td>
+					<td class="dt_added">2017-02-26 23:55:23</td>
+					<td class="message">Not all categories merged into 0 are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Slippery Slope</td>
+					<td class="dt_added">2017-02-26 23:56:14</td>
+					<td class="message">Not all categories merged into 1 are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Slippery Slope</td>
+					<td class="dt_added">2017-02-26 23:56:49</td>
+					<td class="message">Not all categories merged into 2 are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Slippery Slope</td>
+					<td class="dt_added">2017-02-26 23:57:13</td>
+					<td class="message">Not all categories merged into 3 are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Slippery Slope</td>
+					<td class="dt_added">2017-02-26 23:57:46</td>
+					<td class="message">Not all categories merged into 4 are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Slippery Slope</td>
+					<td class="dt_added">2017-02-26 23:58:25</td>
+					<td class="message">Not all categories merged into 6 are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Slippery Slope</td>
+					<td class="dt_added">2017-02-26 23:58:57</td>
+					<td class="message">Not all categories merged into 7 are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Slippery Slope</td>
+					<td class="dt_added">2017-02-26 23:59:30</td>
+					<td class="message">Not all categories merged into 9 are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				</table>
+
+			
+			<h2><a href="sources/1"><span class="glyphicon glyphicon-download"></span></a>
+				category-article.csv
+				<small>The original challenge dataset.</small>
+			</h2>
+				<p>The original challenge dataset.</p>
+				<table class="table table-striped">
+					<tr>
+						<th>Username</th>
+						<th>Date</th>
+						<th>Error Message</th>
+						<th>Pairs Removed</th>
+						<th>Categories Removed</th>
+						<th>Super Categories</th>
+						<th>Merges</th>
+					</tr>
+				
+				<tr>
+					<td class="user">Faceless Flax</td>
+					<td class="dt_added">2017-02-16 19:01:15</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Faceless Flax</td>
+					<td class="dt_added">2017-02-16 19:02:17</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Faceless Flax</td>
+					<td class="dt_added">2017-02-16 19:03:10</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">sudeep</td>
+					<td class="dt_added">2017-02-17 15:44:45</td>
+					<td class="message">Some articles are missing: Audit management, PECVD, Apache Directory, CFX, Adobe Content Server, Metastorm, Cloud testing, Autodesk Inventor, FCIP, Unreal Development Kit...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">test_submit_1</td>
+					<td class="dt_added">2017-02-20 16:35:31</td>
+					<td class="message">Some articles are missing: Audit management, Circuit analysis, Biochemistry, Strong authentication, Business Basic, Crisis management, Internet security, Strategic thinking, ITIL, Conceptual semantics...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">test_submit_1</td>
+					<td class="dt_added">2017-02-20 17:27:41</td>
+					<td class="message">Some articles are missing: Audit management, Circuit analysis, Biochemistry, Strong authentication, Business Basic, Crisis management, Internet security, Strategic thinking, ITIL, Conceptual semantics...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">test_submit_1</td>
+					<td class="dt_added">2017-02-20 17:36:49</td>
+					<td class="message">Some articles are missing: Audit management, Circuit analysis, Biochemistry, Strong authentication, Business Basic, Crisis management, Internet security, Strategic thinking, ITIL, Conceptual semantics...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">test_submit_1</td>
+					<td class="dt_added">2017-02-20 17:36:59</td>
+					<td class="message">Some articles are missing: Audit management, Circuit analysis, Biochemistry, Strong authentication, Business Basic, Crisis management, Internet security, Strategic thinking, ITIL, Conceptual semantics...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">test_submit_1</td>
+					<td class="dt_added">2017-02-20 18:01:35</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">test_submit_1</td>
+					<td class="dt_added">2017-02-20 18:05:26</td>
+					<td class="message">Not all categories merged into graphics file formats are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-20 19:35:16</td>
+					<td class="message">Some articles are missing: RADIUS, Circuit analysis, PeopleTools, Blog, VAT, Biochemistry, RF, Strong authentication, Crisis management, EKG...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-20 19:55:22</td>
+					<td class="message">Not all categories merged into digital television are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-20 20:05:09</td>
+					<td class="message">Not all categories merged into digital television are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-20 20:12:48</td>
+					<td class="message">Not all categories merged into digital television are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-20 20:37:36</td>
+					<td class="message">Some articles are missing: AtTask, Advent, MYOB, Field marketing, Windows Server Essentials, Microsoft Windows Server, Music composition, KANA...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-20 20:42:17</td>
+					<td class="message">Some articles are missing: oneSIS, HP Systems Insight Manager, Ab Initio, TIBCO Hawk...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-20 20:49:19</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-20 21:09:19</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-20 21:37:01</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-20 21:41:27</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">test_submit_1</td>
+					<td class="dt_added">2017-02-20 22:04:28</td>
+					<td class="message">Some categories have additional articles, but no categories were removed</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">test_submit_1</td>
+					<td class="dt_added">2017-02-20 22:05:01</td>
+					<td class="message">Some categories have additional articles, but no categories were removed</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-21 00:43:43</td>
+					<td class="message">Not all categories merged into digital television are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-21 02:23:49</td>
+					<td class="message">Not all categories merged into disk file systems are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">wall_of_shame_king</td>
+					<td class="dt_added">2017-02-21 02:24:16</td>
+					<td class="message">Not all categories merged into graphics file formats are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">wall_of_shame_king</td>
+					<td class="dt_added">2017-02-21 02:50:08</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">simple_manual_removal_test</td>
+					<td class="dt_added">2017-02-21 02:56:52</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">simple_manual_removal_test</td>
+					<td class="dt_added">2017-02-21 02:58:12</td>
+					<td class="message">Some categories have additional articles, but no categories were removed</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-21 04:14:48</td>
+					<td class="message">Not all categories merged into java platform are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-21 05:29:42</td>
+					<td class="message">Not all categories merged into software requirements are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">SJN</td>
+					<td class="dt_added">2017-02-21 15:10:50</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">SJN</td>
+					<td class="dt_added">2017-02-21 15:12:42</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-21 16:11:02</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-21 16:20:16</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-21 16:48:23</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-21 19:46:59</td>
+					<td class="message">Some articles are missing: Audit management, PECVD, Apache Directory, CFX, Adobe Content Server, Metastorm, Cloud testing, Autodesk Inventor, FCIP, Unreal Development Kit...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-21 20:52:07</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">SJN</td>
+					<td class="dt_added">2017-02-21 20:53:48</td>
+					<td class="message">Some articles are missing: Audit management, PECVD, Apache Directory, CFX, Adobe Content Server, Metastorm, Cloud testing, Autodesk Inventor, FCIP, Unreal Development Kit...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-21 21:09:12</td>
+					<td class="message">Not all categories merged into contract law are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-21 21:25:39</td>
+					<td class="message">Some articles are missing: Oracle Grid Engine, Software metrics, Image segmentation, Ember.js, ICD, Online advertising, Telecommunication Management Network model, EKG, Time series, Game design...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-21 22:29:45</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-22 01:47:54</td>
+					<td class="message">Not all categories merged into human resource management are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-22 01:51:04</td>
+					<td class="message">Not all categories merged into human resource management are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-22 01:54:12</td>
+					<td class="message">Not all categories merged into human resource management are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-22 03:20:31</td>
+					<td class="message">Some articles are missing: Circuit analysis, PeopleTools, Strong authentication, Apache Directory, EKG, Joint application design, PowerDesigner, VMware Infrastructure, Cloud testing, Network monitoring...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-22 16:26:21</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-22 16:27:00</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-22 16:42:57</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Faceless Fermentation</td>
+					<td class="dt_added">2017-02-23 11:02:33</td>
+					<td class="message">Some articles are missing: Oracle Grid Engine, Software metrics, Image segmentation, Ember.js, ICD, Online advertising, Telecommunication Management Network model, EKG, Time series, Game design...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Faceless Fermentation</td>
+					<td class="dt_added">2017-02-23 11:02:53</td>
+					<td class="message">Some articles are missing: Oracle Grid Engine, Software metrics, Image segmentation, Ember.js, ICD, Online advertising, Telecommunication Management Network model, EKG, Time series, Game design...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Shooting</td>
+					<td class="dt_added">2017-02-23 14:27:58</td>
+					<td class="message">Some articles are missing: Oracle Grid Engine, Software metrics, Image segmentation, Ember.js, ICD, Online advertising, Telecommunication Management Network model, EKG, Time series, Game design...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Umineko</td>
+					<td class="dt_added">2017-02-27 02:26:24</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Nope</td>
+					<td class="dt_added">2017-02-27 02:37:09</td>
+					<td class="message">Some articles are missing: Apache POI, Symantec Endpoint Protection, Adobe Content Server, LATAM, Redmine, PowerDesigner, VMware Infrastructure, Cloud testing, Analyst relations, AngularJS...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				</table>
+
+			
+			<h2><a href="sources/4"><span class="glyphicon glyphicon-download"></span></a>
+				remix.csv
+				<small>category-article.csv, Gabriel &amp; Dresden Mix</small>
+			</h2>
+				<p>category-article.csv, Gabriel &amp; Dresden Mix</p>
+				<table class="table table-striped">
+					<tr>
+						<th>Username</th>
+						<th>Date</th>
+						<th>Error Message</th>
+						<th>Pairs Removed</th>
+						<th>Categories Removed</th>
+						<th>Super Categories</th>
+						<th>Merges</th>
+					</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-21 22:57:55</td>
+					<td class="message">Not all categories merged into openpgp are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-21 22:59:52</td>
+					<td class="message">Not all categories merged into nuclear command and control are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-22 01:21:22</td>
+					<td class="message">Not all categories merged into organisations designated as terrorist by the european union are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-22 01:23:38</td>
+					<td class="message">Not all categories merged into organisations designated as terrorist by the european union are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-22 01:25:37</td>
+					<td class="message">Not all categories merged into numerical analysis software for windows are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-22 01:27:02</td>
+					<td class="message">Not all categories merged into numerical analysis software for windows are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-22 01:28:21</td>
+					<td class="message">Not all categories merged into numerical analysis software for windows are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Subroutine</td>
+					<td class="dt_added">2017-02-22 01:31:38</td>
+					<td class="message">Not all categories merged into spreadsheet software are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Boo</td>
+					<td class="dt_added">2017-02-24 05:32:46</td>
+					<td class="message">Not all categories merged into spreadsheet software are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Umineko</td>
+					<td class="dt_added">2017-02-27 13:54:49</td>
+					<td class="message">Some articles are missing: Experience design, Scientific research, Apache POI, JRockit, jQuery Mobile, Microsoft OneNote, Biology, Construction administration, SPARC, MCMS...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Umineko</td>
+					<td class="dt_added">2017-02-27 14:00:16</td>
+					<td class="message">Not all categories merged into proxy server software for linux are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Umineko</td>
+					<td class="dt_added">2017-02-27 14:33:56</td>
+					<td class="message">Not all categories merged into web server software for linux are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				</table>
+
+			
+			<h2><a href="sources/3"><span class="glyphicon glyphicon-download"></span></a>
+				redundant-removals.csv
+				<small>Plenty of chances to remove categories.</small>
+			</h2>
+				<p>Plenty of chances to remove categories.</p>
+				<table class="table table-striped">
+					<tr>
+						<th>Username</th>
+						<th>Date</th>
+						<th>Error Message</th>
+						<th>Pairs Removed</th>
+						<th>Categories Removed</th>
+						<th>Super Categories</th>
+						<th>Merges</th>
+					</tr>
+				
+				<tr>
+					<td class="user">Incognito Isle</td>
+					<td class="dt_added">2017-02-21 19:49:40</td>
+					<td class="message">Categories were introduced</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">SJN</td>
+					<td class="dt_added">2017-02-21 20:25:22</td>
+					<td class="message">Some articles are missing: Wealth management...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Boo</td>
+					<td class="dt_added">2017-02-24 05:44:45</td>
+					<td class="message">Not all categories merged into animation software are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Boo</td>
+					<td class="dt_added">2017-02-24 06:01:43</td>
+					<td class="message">Not all categories merged into animation software are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Umineko</td>
+					<td class="dt_added">2017-02-27 13:54:28</td>
+					<td class="message">Some articles are missing: Ward&#39;s method, Conceptual semantics, RAID, System requirements, Proprietary software, DQM, Serial communication, Expect, Murex, IBM SmartCloud...</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Umineko</td>
+					<td class="dt_added">2017-02-27 13:59:00</td>
+					<td class="message">Not all categories merged into mercian saints are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Umineko</td>
+					<td class="dt_added">2017-02-27 14:33:25</td>
+					<td class="message">Not all categories merged into active directory are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				<tr>
+					<td class="user">Secret Silver</td>
+					<td class="dt_added">2017-02-28 05:30:00</td>
+					<td class="message">Not all categories merged into burlington, massachusetts are connected by homogeneity OR the category label is wrong</td>
+					<td class="pairs">0</td>
+					<td class="cats">0</td>
+					<td class="supercats">0</td>
+					<td class="merges">0</td>
+				</tr>
+				
+				</table>
+
+			
+       </div>
+      </div>
+  </div>
+
+ 
+      <hr>
+	<div class="container">
+      <footer>
+        <p>&copy; 2017</p>
+      </footer>
+    </div> <!-- /container -->        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/vendor/jquery-ui.min.js"></script>
+		<!-- <script src="js/vendor/dropzone.js"></script> -->
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
