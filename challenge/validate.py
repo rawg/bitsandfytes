@@ -125,7 +125,10 @@ def validate(source, output, threshold=0.75, headers=True):
     # Categories in the source but not the output
     missing = src.cats - out.cats
 
-    # Possible supercategories: categories with more articles in the output than in the source
+    # Possible supercategories: any category whose contents have changed. The
+    # intention is to collect categories with more articles, but by comparing
+    # the complete contents instead of the size we'll also catch categories
+    # whose articles have only been rearranged (which is invalid).
     grown = [cat for cat in out.cats if src.cat_arts[cat] != out.cat_arts[cat]]
 
     # All possible merge operations keyed by supercategory.

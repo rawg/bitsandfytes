@@ -10,9 +10,6 @@ import csv
 import logging
 import random
 
-logging.basicConfig(level=logging.INFO)
-
-
 # Parse command line arguments
 parser = argparse.ArgumentParser(description="Reduce category-article pairs.")
 parser.add_argument("-i", "--infile", help="input file", required=False, default=None)
@@ -28,7 +25,20 @@ parser.set_defaults(certain=True)
 
 parser.add_argument("-G", "--generate", help="generate article and category names", action="store_true")
 parser.add_argument("--cardinality", help="Average category-article cardinality when generating", type=int, default=5)
+
+parser.add_argument("-L", "--log-level", help="logging level",
+                    choices=["info", "debug", "warning", "error", "critical"], default="info")
+
 args = parser.parse_args()
+
+choices = {
+    "info": logging.INFO,
+    "debug": logging.DEBUG,
+    "warning": logging.WARNING,
+    "error": logging.ERROR,
+    "critical": logging.CRITICAL
+}
+logging.basicConfig(level=choices[args.log_level])
 
 
 class DataManager(object):
@@ -94,7 +104,7 @@ class FileManager(DataManager):
         self.arts = list(arts)
 
     def record(self, cat, art):
-        super().remove(cat, art)
+        super().record(cat, art)
         if self.certain:
             if cat in self.cats:
                 del self.cats[self.cats.index(cat)]
